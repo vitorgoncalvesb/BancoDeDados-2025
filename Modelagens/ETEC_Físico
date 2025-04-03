@@ -1,0 +1,82 @@
+-- Tabela Aluno
+CREATE TABLE Aluno (
+    RM INT PRIMARY KEY,
+    Nome VARCHAR(255),
+    Data_Nascimento DATE,
+    Endereco VARCHAR(255),
+    E_mail VARCHAR(255)
+);
+
+-- Tabela Curso
+CREATE TABLE Curso (
+    ID_Curso INT PRIMARY KEY,
+    Nome VARCHAR(255)
+);
+
+-- Tabela Disciplina
+CREATE TABLE Disciplina (
+    ID_Disciplina INT PRIMARY KEY,
+    Nome VARCHAR(255),
+    Carga_Horaria INT
+);
+
+-- Tabela Professor
+CREATE TABLE Professor (
+    ID_Professor INT PRIMARY KEY,
+    Nome VARCHAR(255),
+    Materia VARCHAR(255),
+    E_mail VARCHAR(255)
+);
+
+-- Tabela Turma
+CREATE TABLE Turma (
+    ID_Turma INT PRIMARY KEY,
+    Nome VARCHAR(255),
+    Ano INT,
+    Semestre INT
+);
+
+-- Tabela Matricula (Aluno-Curso)
+CREATE TABLE Matricula (
+    RM INT,
+    ID_Curso INT,
+    PRIMARY KEY (RM, ID_Curso),
+    FOREIGN KEY (RM) REFERENCES Aluno(RM),
+    FOREIGN KEY (ID_Curso) REFERENCES Curso(ID_Curso)
+);
+
+-- Tabela Leciona (Curso-Professor)
+CREATE TABLE Leciona (
+    ID_Curso INT,
+    ID_Professor INT,
+    PRIMARY KEY (ID_Curso, ID_Professor),
+    FOREIGN KEY (ID_Curso) REFERENCES Curso(ID_Curso),
+    FOREIGN KEY (ID_Professor) REFERENCES Professor(ID_Professor)
+);
+
+-- Tabela Pertence (Aluno-Turma)
+CREATE TABLE Pertence (
+    RM INT,
+    ID_Turma INT,
+    PRIMARY KEY (RM, ID_Turma),
+    FOREIGN KEY (RM) REFERENCES Aluno(RM),
+    FOREIGN KEY (ID_Turma) REFERENCES Turma(ID_Turma)
+);
+
+-- Tabela Tem (Disciplina-Turma)
+CREATE TABLE Tem (
+    ID_Disciplina INT,
+    ID_Turma INT,
+    PRIMARY KEY (ID_Disciplina, ID_Turma),
+    FOREIGN KEY (ID_Disciplina) REFERENCES Disciplina(ID_Disciplina),
+    FOREIGN KEY (ID_Turma) REFERENCES Turma(ID_Turma)
+);
+
+-- Tabela Ministra (Professor-Disciplina)
+CREATE TABLE Ministra (
+    ID_Professor INT,
+    ID_Disciplina INT,
+    PRIMARY KEY (ID_Professor, ID_Disciplina),
+    FOREIGN KEY (ID_Professor) REFERENCES Professor(ID_Professor),
+    FOREIGN KEY (ID_Disciplina) REFERENCES Disciplina(ID_Disciplina)
+);
