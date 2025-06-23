@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<DiagramaER>
+  <Entidade Nome="Garcom">
+    <Atributo Nome="id_garcom" Tipo="INTEIRO" ChavePrimaria="true"/>
+    <Atributo Nome="nome_garcom" Tipo="TEXTO"/>
+  </Entidade>
+  <Entidade Nome="Mesa">
+    <Atributo Nome="id_mesa" Tipo="INTEIRO" ChavePrimaria="true"/>
+    <Atributo Nome="data_atendimento" Tipo="DATA"/>
+    <Atributo Nome="hora_inicio" Tipo="HORA"/>
+    <Atributo Nome="hora_fim" Tipo="HORA"/>
+    <Atributo Nome="qtd_pessoas" Tipo="INTEIRO"/>
+  </Entidade>
+  <Entidade Nome="Produto">
+    <Atributo Nome="id_produto" Tipo="INTEIRO" ChavePrimaria="true"/>
+    <Atributo Nome="nome_produto" Tipo="TEXTO"/>
+    <Atributo Nome="preco_unitario" Tipo="REAL"/>
+  </Entidade>
+  <Entidade Nome="Conta">
+    <Atributo Nome="id_mesa" Tipo="INTEIRO" ChavePrimaria="true"/>
+    <Atributo Nome="valor_total" Tipo="REAL"/>
+    <Atributo Nome="valor_por_pessoa" Tipo="REAL"/>
+  </Entidade>
+  <Relacionamento Nome="Atende" Tipo="1:N">
+    <Participante Entidade="Garcom" Multiplicidade="1"/>
+    <Participante Entidade="Mesa" Multiplicidade="N"/>
+  </Relacionamento>
+  <Relacionamento Nome="Consome" Tipo="N:N">
+    <Participante Entidade="Mesa" Multiplicidade="N"/>
+    <Participante Entidade="Produto" Multiplicidade="N"/>
+    <Atributo Nome="quantidade" Tipo="INTEIRO"/>
+  </Relacionamento>
+</DiagramaER>
